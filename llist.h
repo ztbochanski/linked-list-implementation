@@ -1,5 +1,3 @@
-// llist.h
-
 #ifndef LLIST_H
 #define LLIST_H
 
