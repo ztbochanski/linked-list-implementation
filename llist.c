@@ -100,42 +100,35 @@ void llist_free(struct node **head)
 int main(int argc, char *argv[])
 {
   struct node *head = NULL;
-  struct node *n1 = node_alloc(10);
-  struct node *n2 = node_alloc(20);
-  struct node *n3 = node_alloc(30);
-  llist_insert_tail(&head, n1);
-  llist_insert_tail(&head, n2);
-  llist_insert_tail(&head, n3);
-  llist_delete_head(&head);
-  llist_print(head);
-  llist_free(&head);
-  //  parse the command line
-  //  for (int arg_counter = 1; arg_counter < argc; arg_counter++)
-  //  {
-  //    int value;
-  //    if (arg_counter < argc - 1)
-  //    {
-  //      value = atoi(argv[arg_counter + 1]);
-  //    }
-  //    if (0 == strcmp(argv[arg_counter], "ih"))
-  //    {
-  //      printf("%d: command => %s, value: %d\n", arg_counter, argv[arg_counter], value);
-  //    }
-  //    else if (0 == strcmp(argv[arg_counter], "it"))
-  //    {
-  //      printf("%d: command => %s, value: %d\n", arg_counter, argv[arg_counter], value);
-  //    }
-  //    else if (0 == strcmp(argv[arg_counter], "dh"))
-  //    {
-  //      /* code */
-  //    }
-  //    else if (0 == strcmp(argv[arg_counter], "f"))
-  //    {
-  //      /* code */
-  //    }
-  //    else if (0 == strcmp(argv[arg_counter], "p"))
-  //    {
-  //      /* code */
-  //    }
-  //  }
+  struct node *new_node;
+  for (int arg_counter = 1; arg_counter < argc; arg_counter++)
+  {
+    int value;
+    if (arg_counter < argc - 1)
+    {
+      value = atoi(argv[arg_counter + 1]);
+    }
+    if (0 == strcmp(argv[arg_counter], "ih"))
+    {
+      new_node = node_alloc(value);
+      llist_insert_head(&head, new_node);
+    }
+    else if (0 == strcmp(argv[arg_counter], "it"))
+    {
+      new_node = node_alloc(value);
+      llist_insert_tail(&head, new_node);
+    }
+    else if (0 == strcmp(argv[arg_counter], "dh"))
+    {
+      llist_delete_head(&head);
+    }
+    else if (0 == strcmp(argv[arg_counter], "f"))
+    {
+      llist_free(&head);
+    }
+    else if (0 == strcmp(argv[arg_counter], "p"))
+    {
+      llist_print(head);
+    }
+  }
 }
