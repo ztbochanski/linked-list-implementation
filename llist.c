@@ -88,7 +88,13 @@ struct node *llist_delete_head(struct node **head)
 
 void llist_free(struct node **head)
 {
-  struct node *temp = *head;
+  struct node *temp;
+  while (*head != NULL)
+  {
+    temp = *head;
+    *head = temp->next;
+    node_free(temp);
+  }
 }
 
 int main(int argc, char *argv[])
@@ -102,9 +108,7 @@ int main(int argc, char *argv[])
   llist_insert_tail(&head, n3);
   llist_delete_head(&head);
   llist_print(head);
-  node_free(n1);
-  node_free(n2);
-  node_free(n3);
+  llist_free(&head);
   //  parse the command line
   //  for (int arg_counter = 1; arg_counter < argc; arg_counter++)
   //  {
